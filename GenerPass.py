@@ -28,3 +28,16 @@ def gen_password(length = 12, upper_include = True, digits_include = True, speci
     random.shuffle(password)
 
     return ''.join(password)
+
+
+if __name__ == "__main__":
+    password_length = int(input("Enter the password legnth required: "))
+    uppercase_present =input("Include uppercase letters? (yes/no): ").lower() == 'yes'
+    digits_present = input("Include digits? (yes/no): ").lower() == 'yes'
+    special_chars_present= input("Include special characters? (yes/no) ").lower() == 'yes'
+
+    try:
+        generated_password = gen_password(password_length, uppercase_present, digits_present, special_chars_present)
+        print(f"Generated password: {generated_password}")
+    except ValueError as e:
+        print(e)
