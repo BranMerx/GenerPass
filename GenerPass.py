@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 def gen_password(length = 12, upper_include = True, digits_include = True, specialChars_include = True):
-    if length < 5:
+    if length < 6:
         raise ValueError("Password must be at least six characters")
 
     characters = list(string.ascii_letters)
@@ -24,7 +24,7 @@ def gen_password(length = 12, upper_include = True, digits_include = True, speci
         password.append(random.choice(string.digits))
     if specialChars_include:
         password.append(random.choice(string.punctuation))
-    password += [random.choice(characters) for _ in range(length = len(password))]
+    password += [random.choice(characters) for _ in range(length - len(password))]
 
     #Shuffle to avoid predictable patterns
     random.shuffle(password)
@@ -61,7 +61,7 @@ tk.Checkbutton(root, text = "Include Upper Case Letters", variable=var_upper).gr
 
 #Digits
 var_digits = tk.BooleanVar()
-tk.Checkbutton(root, text="Include Special Characters", variable = var_digits).grid(row=2, column = 0, columnspan =2)
+tk.Checkbutton(root, text= "Include Numerical Digits", variable = var_digits).grid(row=2, column = 0, columnspan =2)
 
 # Special Characters
 var_special = tk.BooleanVar()
